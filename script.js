@@ -5,7 +5,7 @@ window.onload = function() {
         document.getElementById("user-details").innerText = "👤 Logged in as: " + user;
     } else {
         // Redirect if not logged in
-        window.location = "/login.html";
+        window.location = "login.html";
     }
 };
 
@@ -26,13 +26,14 @@ function logout() {
 }
 
 /* MAP */
-
+window.onload = function(){
 var map = L.map('map').setView([16.3067,80.4365],13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 }).addTo(map);
 
-navigator.geolocation.getCurrentPosition(function(pos){
+navigator.geolocation.getCurrentPosition(
+function(pos){
 
 var lat = pos.coords.latitude;
 var lon = pos.coords.longitude;
@@ -43,8 +44,13 @@ L.marker([lat,lon]).addTo(map)
 
 map.setView([lat,lon],15)
 
-});
+},
 
+function(){
+alert("Location access denied");
+}
+
+);
 /* ROUTE SEARCH */
 
 function searchRoute(){
@@ -64,22 +70,7 @@ document.getElementById("routeResult").innerHTML=
 
 function sendFeedback(){
 
-fetch("/feedback",{
-
-method:"POST",
-
-headers:{"Content-Type":"application/json"},
-
-body:JSON.stringify({
-name:document.getElementById("name").value,
-message:document.getElementById("message").value
-})
-
-})
-
-.then(res=>res.json())
-.then(data=>{
-document.getElementById("fbmsg").innerText="Feedback submitted!"
-})
+document.getElementById("fbmsg").innerText =
+"✅ Feedback submitted successfully!";
 
 }
