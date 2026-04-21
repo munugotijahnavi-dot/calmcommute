@@ -97,14 +97,14 @@ section {
 .hide {
     display: none !important;
 }
-
 #map {
-    height: 400px;
+    height: 450px;
     width: 80%;
     margin: 30px auto;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+
 
 .card {
     background: white;
@@ -157,4 +157,8 @@ button:hover {
 h2, h3 {
     text-align: center;
     color: #333;
+}
+section{
+    max-width:1000px;
+    margin:auto;
 }
