@@ -22,7 +22,7 @@ function toggleMenu() {
 
 function logout() {
     localStorage.removeItem("currentUser");
-    window.location = "/login.html";
+    window.location = "login.html";
 }
 
 /* MAP */
