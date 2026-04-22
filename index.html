@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CalmCommute SPA</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(120deg,#4facfe,#00f2fe);
+}
+
+/* LOGIN SCREEN */
+#loginPage{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:15px;
+text-align:center;
+}
+
+input{
+padding:10px;
+margin:5px;
+}
+
+/* HOME */
+#homePage{
+display:none;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px;
+background:#fff;
+}
+
+.menu{
+font-size:25px;
+cursor:pointer;
+}
+
+#sidebar{
+position:fixed;
+left:-220px;
+top:0;
+width:200px;
+height:100%;
+background:#222;
+color:white;
+padding:10px;
+transition:0.3s;
+}
+
+.card{
+background:white;
+margin:10px;
+padding:10px;
+border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+  <div class="box">
+    <h2>🚍 CalmCommute Login</h2>
+    <input id="user" placeholder="Username"><br>
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- HOME PAGE -->
+<div id="homePage">
+
+<header>
+  <div class="menu" onclick="toggle()">☰</div>
+  <h3>CalmCommute</h3>
+</header>
+
+<div id="sidebar">
+  <p id="userText"></p>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<h2 style="padding:10px;">📍 Live Location</h2>
+<p id="loc"></p>
+
+</div>
+
+<script>
+
+// LOGIN
+function login(){
+let user = document.getElementById("user").value;
+
+if(user){
+localStorage.setItem("user", user);
+
+document.getElementById("loginPage").style.display="none";
+document.getElementById("homePage").style.display="block";
+
+document.getElementById("userText").innerText = "User: " + user;
+
+getLocation();
+
+}else{
+alert("Enter username");
+}
+}
+
+// LOGOUT
+function logout(){
+localStorage.clear();
+location.reload();
+}
+
+// SIDEBAR
+function toggle(){
+let sb = document.getElementById("sidebar");
+sb.style.left = (sb.style.left === "0px") ? "-220px" : "0px";
+}
+
+// LOCATION
+function getLocation(){
+navigator.geolocation.getCurrentPosition((pos)=>{
+document.getElementById("loc").innerText =
+pos.coords.latitude + ", " + pos.coords.longitude;
+});
+}
+
+</script>
+
+</body>
+</html>

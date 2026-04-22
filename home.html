@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CalmCommute Home</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="getLocation()">
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <p id="userInfo"></p>
+  <button onclick="logout()">🚪 Logout</button>
+</div>
+
+<!-- MENU BUTTON -->
+<div class="menu" onclick="toggleSidebar()">☰</div>
+
+<h1>🚍 CalmCommute Dashboard</h1>
+
+<!-- LIVE LOCATION -->
+<h3>📍 Your Live Location:</h3>
+<p id="location">Detecting...</p>
+
+<script>
+let sidebarOpen = false;
+
+function toggleSidebar(){
+  let sb = document.getElementById("sidebar");
+  sidebarOpen = !sidebarOpen;
+  sb.style.left = sidebarOpen ? "0px" : "-200px";
+}
+
+function logout(){
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+
+document.getElementById("userInfo").innerText =
+"User: " + localStorage.getItem("user");
+
+// LIVE LOCATION
+function getLocation(){
+  navigator.geolocation.getCurrentPosition(showPos);
+}
+
+function showPos(pos){
+  document.getElementById("location").innerText =
+  "Lat: " + pos.coords.latitude +
+  " | Lng: " + pos.coords.longitude;
+}
+</script>
+
+</body>
+</html>

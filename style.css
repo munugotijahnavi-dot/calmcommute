@@ -1,0 +1,40 @@
+/* LOGIN PAGE */
+.login-body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:linear-gradient(120deg,#4facfe,#00f2fe);
+}
+
+.login-box{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+}
+
+/* HOME */
+body{
+  font-family:Arial;
+  margin:0;
+}
+
+.menu{
+  font-size:30px;
+  padding:10px;
+  cursor:pointer;
+}
+
+#sidebar{
+  position:fixed;
+  left:-200px;
+  top:0;
+  width:200px;
+  height:100%;
+  background:#222;
+  color:white;
+  padding:20px;
+  transition:0.3s;
+}
